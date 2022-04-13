@@ -69,7 +69,9 @@ namespace NetProjectPackageExtractor
                     Id = x.Name,
                     Version = x.Version,
                     License = x.License,
-                    ProjectName = x.ProjectTitle
+                    LicenseUrl = x.LicenseUrl,
+                    ProjectName = x.ProjectTitle,
+                    ProjectUrl = x.ProjectUrl
                 }
                 )
                 .OrderBy(x => x.Id)
@@ -105,7 +107,11 @@ namespace NetProjectPackageExtractor
                 dataTable.Rows.Add(dataRow);
             }
 
-            var table2 = pivotWorksheet.Cell(1, 1).InsertTable(dataTable, "Libraries", true);
+            var table = pivotWorksheet.Cell(1, 1).InsertTable(dataTable, "Libraries", true);
+            pivotWorksheet.Rows().AdjustToContents();
+            pivotWorksheet.Columns().AdjustToContents();
+
+
         }
 
         /// <summary>
@@ -122,7 +128,9 @@ namespace NetProjectPackageExtractor
                     Id = x.Name,
                     Version = x.Version,
                     License = x.License,
-                    ProjectName = x.ProjectTitle
+                    LicenseUrl = x.LicenseUrl,
+                    ProjectName = x.ProjectTitle,
+                    ProjectUrl = x.ProjectUrl
                 }
                 )
                 .OrderBy(x => x.Id)
@@ -130,7 +138,22 @@ namespace NetProjectPackageExtractor
                 .ThenBy(x => x.ProjectName);
 
             var nugetWorksheet = workbook.Worksheets.Add("NuGet Packages");
-            nugetWorksheet.Cell(1, 1).InsertTable(nugetPackageData.AsEnumerable(), "NugetPackages", true);
+            var table = nugetWorksheet.Cell(1, 1).InsertTable(nugetPackageData.AsEnumerable(), "NugetPackages", true);
+            nugetWorksheet.Rows().AdjustToContents();
+            nugetWorksheet.Columns().AdjustToContents();
+
+            foreach (var wsrow in nugetWorksheet.Rows().Skip(1))
+            {
+                if (!string.IsNullOrWhiteSpace(wsrow.Cell("D").Value.ToString()))
+                {
+                    wsrow.Cell("D").Hyperlink = new XLHyperlink(wsrow.Cell("D").Value.ToString());
+                }
+
+                if (!string.IsNullOrWhiteSpace(wsrow.Cell("F").Value.ToString()))
+                { 
+                    wsrow.Cell("F").Hyperlink = new XLHyperlink(wsrow.Cell("F").Value.ToString());
+                }
+            }
         }
     }
 }
