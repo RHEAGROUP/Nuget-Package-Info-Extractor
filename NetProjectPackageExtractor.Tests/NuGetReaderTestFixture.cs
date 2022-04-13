@@ -58,5 +58,22 @@ namespace NetProjectPackageExtractor.Tests
 
             Assert.That(package.LicenseUrl, Is.EqualTo("https://aka.ms/deprecateLicenseUrl"));
         }
+
+        [Test]
+        public void Verify_that_nusepc_details_can_be_read_and_packages_are_update_2()
+        {
+            var package = new Package
+            {
+                Name = "cdp4common-ce",
+                Version = "8.1.0"
+            };
+
+            var packages = new List<Package>() { package };
+
+            this.nuGetReader.Update(packages);
+
+            Assert.That(package.LicenseUrl, Is.EqualTo("https://licenses.nuget.org/LGPL-3.0-only"));
+        }
+
     }
 }

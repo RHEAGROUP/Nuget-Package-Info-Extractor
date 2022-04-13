@@ -52,10 +52,15 @@ namespace NetProjectPackageExtractor
                     package.Description = reader.GetDescription();
                     package.ProjectUrl = reader.GetProjectUrl();
                     package.LicenseUrl = reader.GetLicenseUrl();
+                    package.License = reader.GetLicenseMetadata()?.License;
+
+                    var version = reader.GetVersion().Version;
+
+                    package.Version = $"{version.Major}.{version.Minor}.{version.Revision}";
                 }
                 else
                 {
-                    Console.WriteLine("One of the referenced package files doesn't exist, please consider running a dotnet restore command");
+                    Console.WriteLine($"One of the referenced package files ({package.Name}) doesn't exist, please consider running a dotnet restore command");
                 }
             }
         }

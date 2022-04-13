@@ -66,7 +66,12 @@ namespace NetProjectPackageExtractor
         public string Version { get; set; }
 
         /// <summary>
-        /// Gets or sets the version url.
+        /// Gets or sets the License type 
+        /// </summary>
+        public string License { get; internal set; }
+
+        /// <summary>
+        /// Gets or sets the license url.
         /// </summary>
         public string LicenseUrl { get; set; }
 

@@ -21,6 +21,8 @@
 namespace NetProjectPackageExtractor
 {
     using System;
+    using System.IO;
+    using System.Linq;
 
     /// <summary>
     /// Main entry point for the command line application
@@ -42,7 +44,25 @@ namespace NetProjectPackageExtractor
                 Environment.Exit(0);
             }
 
+            var rootFolder = args[0];
 
+            var resultFile = "result.xlsx";
+
+            if (args.Length == 2)
+            {
+                resultFile = args[1];
+            }
+
+            var projectFileExtractor = new ProjectFileExtractor();
+            var csprojFiles = projectFileExtractor.QueryProjectFiles(rootFolder);
+
+            var projectFileParser = new ProjectFileParser();
+            var packages = projectFileParser.RunParser(csprojFiles).ToList();
+
+            var nuGetReader = new NuGetReader();
+            nuGetReader.Update(packages);
+
+            PackageToExcelWriter.WriteSRF(packages, Path.Combine(rootFolder, resultFile));
         }
     }
 }

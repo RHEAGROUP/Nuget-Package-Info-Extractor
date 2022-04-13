@@ -64,13 +64,21 @@ namespace NetProjectPackageExtractor
             var reader = File.OpenText(projectFile.FullName);
             document.Load(reader);
 
-            var projectTitle = string.Empty;
+            var projectTitle = Path.GetFileNameWithoutExtension(projectFile.Name);
             var projectVersion = string.Empty;
 
             var titleElement = document.SelectSingleNode("//Title");
             if (titleElement != null)
             {
                 projectTitle = titleElement.InnerText;
+            }
+            else 
+            {
+                var assemblyName = document.SelectSingleNode("//AssemblyName");
+                if (assemblyName != null)
+                {
+                    projectTitle = assemblyName.InnerText;
+                }
             }
 
             var versionElement = document.SelectSingleNode("//Version");
