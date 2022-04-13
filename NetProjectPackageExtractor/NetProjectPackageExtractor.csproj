@@ -6,4 +6,8 @@
 	<ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
 
+	<ItemGroup>		
+		<PackageReference Include="NuGet.Packaging" Version="6.1.0" />
+	</ItemGroup>
+
 </Project>

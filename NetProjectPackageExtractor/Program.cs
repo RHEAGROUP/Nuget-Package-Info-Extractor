@@ -18,7 +18,7 @@
 // </copyright>
 // ------------------------------------------------------------------------------------------------
 
-namespace NetProjectPackageExtractor // Note: actual namespace depends on the project name.
+namespace NetProjectPackageExtractor
 {
     using System;
 
@@ -35,7 +35,14 @@ namespace NetProjectPackageExtractor // Note: actual namespace depends on the pr
         /// </param>
         public static void Main(string[] args)
         {
-            
+            if (args.Length != 1)
+            {
+                Console.WriteLine("please provide the root folder where the csproj files are located and where the result will be written");
+                Console.ReadLine();
+                Environment.Exit(0);
+            }
+
+
         }
     }
 }

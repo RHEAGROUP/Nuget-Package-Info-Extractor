@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetProjectPackageExtractor", "NetProjectPackageExtractor.csproj", "{A0E4D585-031C-40DB-8E32-BE32C072534C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetProjectPackageExtractor", "NetProjectPackageExtractor\NetProjectPackageExtractor.csproj", "{A0E4D585-031C-40DB-8E32-BE32C072534C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetProjectPackageExtractor.Tests", "NetProjectPackageExtractor.Tests\NetProjectPackageExtractor.Tests.csproj", "{3003533B-C73C-4C5B-AB54-CE4AA8B30FCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A0E4D585-031C-40DB-8E32-BE32C072534C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0E4D585-031C-40DB-8E32-BE32C072534C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0E4D585-031C-40DB-8E32-BE32C072534C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3003533B-C73C-4C5B-AB54-CE4AA8B30FCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3003533B-C73C-4C5B-AB54-CE4AA8B30FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3003533B-C73C-4C5B-AB54-CE4AA8B30FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3003533B-C73C-4C5B-AB54-CE4AA8B30FCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
