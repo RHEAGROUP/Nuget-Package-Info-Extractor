@@ -53,10 +53,6 @@ namespace NetProjectPackageExtractor
                     package.ProjectUrl = reader.GetProjectUrl();
                     package.LicenseUrl = reader.GetLicenseUrl();
                     package.License = reader.GetLicenseMetadata()?.License;
-
-                    var version = reader.GetVersion().Version;
-
-                    package.Version = $"{version.Major}.{version.Minor}.{version.Revision}";
                 }
                 else
                 {
