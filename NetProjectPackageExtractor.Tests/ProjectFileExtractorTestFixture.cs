@@ -26,11 +26,11 @@ namespace NetProjectPackageExtractor.Tests
     using NetProjectPackageExtractor;
 
     using NUnit.Framework;
-    
 
     /// <summary>
     /// Suite of tests for the <see cref="ProjectFileExtractor"/> class.
     /// </summary>
+    [TestFixture]
     public class ProjectFileExtractorTestFixture
     {
         private ProjectFileExtractor projectFileExtractor;

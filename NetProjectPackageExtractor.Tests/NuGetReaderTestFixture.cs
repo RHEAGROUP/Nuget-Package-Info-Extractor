@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// <copyright file="ProjectFileParserTestFixture.cs" company="RHEA System S.A.">
+// <copyright file="NuGetReaderTestFixture.cs" company="RHEA System S.A.">
 //
 //   Copyright 2022 RHEA System S.A.
 //
@@ -20,8 +20,9 @@
 
 namespace NetProjectPackageExtractor.Tests
 {
-    using System.Collections.Generic;
     using System.IO;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
 
     using NetProjectPackageExtractor;
@@ -29,34 +30,33 @@ namespace NetProjectPackageExtractor.Tests
     using NUnit.Framework;
 
     /// <summary>
-    /// Suite of tests for the <see cref="ProjectFileParser"/> class.
+    /// Suite of tests for the <see cref="NuGetReader"/> class.
     /// </summary>
     [TestFixture]
-    public class ProjectFileParserTestFixture
+    public class NuGetReaderTestFixture
     {
-        private ProjectFileParser projectFileParser;
-
-        private List<FileInfo> projectFiles;
+        private NuGetReader nuGetReader;
 
         [SetUp]
-        public void Setup()
-        {
-            var projectFile = Path.Combine(TestContext.CurrentContext.TestDirectory, "Root", "root.csproj");
-
-            this.projectFiles = new List<FileInfo>() { new FileInfo(projectFile) };
-        
-            this.projectFileParser = new ProjectFileParser();
+        public void SetUp()
+        { 
+            this.nuGetReader = new NuGetReader();
         }
 
         [Test]
-        public void Verify_that_Parser_returns_pacakages()
+        public void Verify_that_nusepc_details_can_be_read_and_packages_are_update()
         {
-            var package = this.projectFileParser.RunParser(this.projectFiles).Single();
+            var package = new Package 
+            { 
+                Name = "Microsoft.NET.Test.Sdk",
+                Version = "16.11.0"
+            };
 
-            Assert.That(package.ProjectTitle, Is.EqualTo("Root project"));
-            Assert.That(package.ProjectVersion, Is.EqualTo("0.0.1"));
-            Assert.That(package.Name, Is.EqualTo("Microsoft.NET.Test.Sdk"));
-            Assert.That(package.Version, Is.EqualTo("16.11.0"));
+            var packages = new List<Package>() { package };
+
+            this.nuGetReader.Update(packages);
+
+            Assert.That(package.LicenseUrl, Is.EqualTo("https://aka.ms/deprecateLicenseUrl"));
         }
     }
 }
