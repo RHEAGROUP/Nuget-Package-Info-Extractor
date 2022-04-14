@@ -44,6 +44,7 @@ namespace NetProjectPackageExtractor.Tests
         }
 
         [Test]
+        [Category("NugetCache")]
         public void Verify_that_nusepc_details_can_be_read_and_packages_are_update()
         {
             var package = new Package 
@@ -60,6 +61,7 @@ namespace NetProjectPackageExtractor.Tests
         }
 
         [Test]
+        [Category("NugetCache")]
         public void Verify_that_nusepc_details_can_be_read_and_packages_are_update_2()
         {
             var package = new Package
