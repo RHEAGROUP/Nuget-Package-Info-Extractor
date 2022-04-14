@@ -1,3 +1,5 @@
 # Net-Project-Package-Extractor
 
-A command line application that extracts all nuget information from csproj files in a nested directory structure and saves the result to a spreadsheet
+A command line application that extracts all nuget information from .csproj files in a nested directory structure and saves the result to a spreadsheet.
+
+## usage
