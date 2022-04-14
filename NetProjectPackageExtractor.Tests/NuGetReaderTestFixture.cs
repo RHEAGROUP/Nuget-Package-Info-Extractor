@@ -64,16 +64,15 @@ namespace NetProjectPackageExtractor.Tests
         {
             var package = new Package
             {
-                Name = "cdp4common-ce",
-                Version = "8.1.0"
+                Name = "coverlet.collector",
+                Version = "3.1.2"
             };
 
             var packages = new List<Package>() { package };
 
             this.nuGetReader.Update(packages);
 
-            Assert.That(package.LicenseUrl, Is.EqualTo("https://licenses.nuget.org/LGPL-3.0-only"));
+            Assert.That(package.LicenseUrl, Is.EqualTo("https://licenses.nuget.org/MIT"));
         }
-
     }
 }
