@@ -5,7 +5,15 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetProjectPackageExtractor", "NetProjectPackageExtractor\NetProjectPackageExtractor.csproj", "{A0E4D585-031C-40DB-8E32-BE32C072534C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetProjectPackageExtractor.Tests", "NetProjectPackageExtractor.Tests\NetProjectPackageExtractor.Tests.csproj", "{3003533B-C73C-4C5B-AB54-CE4AA8B30FCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetProjectPackageExtractor.Tests", "NetProjectPackageExtractor.Tests\NetProjectPackageExtractor.Tests.csproj", "{3003533B-C73C-4C5B-AB54-CE4AA8B30FCE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FCEBF9EF-DA58-4396-9744-BC2C2645661C}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		NOTICE = NOTICE
+		Nuget.Config = Nuget.Config
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

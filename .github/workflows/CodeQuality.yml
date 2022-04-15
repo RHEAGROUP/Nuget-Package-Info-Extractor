@@ -27,7 +27,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           dotnet tool install --global dotnet-sonarscanner
-          dotnet sonarscanner begin /k:"RHEAGROUP_Net-Project-Package-Extractor" /o:"rheagroup" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="./NetProjectPackageExtractor.Tests/coverage.net6.0.opencover.xml"
+          dotnet sonarscanner begin /k:"RHEAGROUP_Net-Project-Package-Extractor" /o:"rheagroup" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="./NetProjectPackageExtractor.Tests/coverage.opencover.xml"
 
       - name: Build
         run: dotnet build --no-restore /p:ContinuousIntegrationBuild=true

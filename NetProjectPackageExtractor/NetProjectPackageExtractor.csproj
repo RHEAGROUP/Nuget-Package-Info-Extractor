@@ -1,9 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
+	<OutputType>Exe</OutputType>
 	<ImplicitUsings>disable</ImplicitUsings>
+	<Company>RHEA System S.A.</Company>
+	<Authors>Sam Gerene, Alexander van Delft</Authors>
+	<Description>A command line application that extracts all nuget information from csproj files in a nested directory structure and saves the result to a spreadsheet.</Description>
+	<Copyright>Copyright 2022 RHEA System S.A.</Copyright>
+	<PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+	<RepositoryUrl>https://github.com/RHEAGROUP/Net-Project-Package-Extractor.git</RepositoryUrl>
+	<RepositoryType>Git</RepositoryType>
   </PropertyGroup>
 
 	<ItemGroup>		
