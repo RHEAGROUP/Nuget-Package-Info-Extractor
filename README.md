@@ -26,7 +26,7 @@ Development | ![Build Status](https://github.com/RHEAGROUP/Net-Project-Package-E
 
 # License
 
-The VCD-Generator libraries are provided to the community under the Apache License 2.0.
+The Net-Project-Package-Extractor software is provided to the community under the Apache License 2.0.
 
 # Contributions
 
