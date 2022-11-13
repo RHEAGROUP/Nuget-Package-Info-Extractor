@@ -26,9 +26,7 @@ namespace NetProjectPackageExtractor.Tests.Resources
 
     [TestFixture]
     public class ResourceLoaderTestFixture
-    {
-        private string path;
-        
+    {   
         [Test]
         public void LoadEmbeddedResource()
         {

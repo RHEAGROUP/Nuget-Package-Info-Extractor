@@ -33,17 +33,17 @@ namespace NetProjectPackageExtractor.Tests.Services
     [TestFixture]
     public class NuGetReaderTestFixture
     {
-        private NuGetReader nuGetReader;
+        private NuGetReader? nuGetReader;
 
         [SetUp]
         public void SetUp()
         {
-            nuGetReader = new NuGetReader();
+            this.nuGetReader = new NuGetReader();
         }
 
         [Test]
         [Category("NugetCache")]
-        public void Verify_that_nusepc_details_can_be_read_and_packages_are_update()
+        public void Verify_that_nuspec_details_can_be_read_and_packages_are_update()
         {
             var package = new Package
             {
@@ -53,14 +53,14 @@ namespace NetProjectPackageExtractor.Tests.Services
 
             var packages = new List<Package>() { package };
 
-            nuGetReader.Update(packages);
+            this.nuGetReader.Update(packages);
 
             Assert.That(package.LicenseUrl, Is.EqualTo("https://aka.ms/deprecateLicenseUrl"));
         }
 
         [Test]
         [Category("NugetCache")]
-        public void Verify_that_nusepc_details_can_be_read_and_packages_are_update_2()
+        public void Verify_that_nuspec_details_can_be_read_and_packages_are_update_2()
         {
             var package = new Package
             {
@@ -70,7 +70,7 @@ namespace NetProjectPackageExtractor.Tests.Services
 
             var packages = new List<Package>() { package };
 
-            nuGetReader.Update(packages);
+            this.nuGetReader.Update(packages);
 
             Assert.That(package.LicenseUrl, Is.EqualTo("https://licenses.nuget.org/MIT"));
         }

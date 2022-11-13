@@ -43,15 +43,15 @@ namespace NetProjectPackageExtractor.Tests.Services
         {
             var projectFile = Path.Combine(TestContext.CurrentContext.TestDirectory, "Root", "root.csproj");
 
-            projectFiles = new List<FileInfo>() { new FileInfo(projectFile) };
+            this.projectFiles = new List<FileInfo>() { new FileInfo(projectFile) };
 
-            projectFileParser = new ProjectFileParser();
+            this.projectFileParser = new ProjectFileParser();
         }
 
         [Test]
         public void Verify_that_Parser_returns_packages()
         {
-            var package = projectFileParser.Parse(projectFiles).Single();
+            var package = this.projectFileParser.Parse(projectFiles).Single();
 
             Assert.That(package.ProjectTitle, Is.EqualTo("Root project"));
             Assert.That(package.ProjectVersion, Is.EqualTo("0.0.1"));

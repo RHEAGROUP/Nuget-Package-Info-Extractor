@@ -45,9 +45,9 @@ namespace NetProjectPackageExtractor.Services
         {
             using (var workbook = new XLWorkbook())
             {
-                this.AddLibrariesSheet(packages, workbook);
+                AddLibrariesSheet(packages, workbook);
 
-                this.AddNugetSheet(packages, workbook);
+                AddNugetSheet(packages, workbook);
 
                 workbook.SaveAs(result.FullName);
             }
@@ -58,7 +58,7 @@ namespace NetProjectPackageExtractor.Services
         /// </summary>
         /// <param name="packages">The <see cref="Package"/>s to get data from</param>
         /// <param name="workbook">The <see cref="XLWorkbook"/></param>
-        private void AddLibrariesSheet(IEnumerable<Package> packages, XLWorkbook workbook)
+        private static void AddLibrariesSheet(IEnumerable<Package> packages, XLWorkbook workbook)
         {
             var nugetPackageData =
                 packages
@@ -116,7 +116,7 @@ namespace NetProjectPackageExtractor.Services
         /// </summary>
         /// <param name="packages">The <see cref="Package"/>s to get data from</param>
         /// <param name="workbook">The <see cref="XLWorkbook"/></param>
-        private void AddNugetSheet(IEnumerable<Package> packages, XLWorkbook workbook)
+        private static void AddNugetSheet(IEnumerable<Package> packages, XLWorkbook workbook)
         {
             var nugetPackageData =
                 packages

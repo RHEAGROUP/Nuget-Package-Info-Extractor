@@ -44,7 +44,7 @@ namespace NetProjectPackageExtractor.Services
 
             foreach (var projectFile in projectFiles)
             {
-                var packages = this.ParseProjectFile(projectFile);
+                var packages = ParseProjectFile(projectFile);
                 result.AddRange(packages);
             }
 
@@ -60,7 +60,7 @@ namespace NetProjectPackageExtractor.Services
         /// <returns>
         /// An <see cref="IEnumerable{Package}"/>
         /// </returns>
-        private IEnumerable<Package> ParseProjectFile(FileInfo projectFile)
+        private static IEnumerable<Package> ParseProjectFile(FileInfo projectFile)
         {
             var document = new XmlDocument();
             

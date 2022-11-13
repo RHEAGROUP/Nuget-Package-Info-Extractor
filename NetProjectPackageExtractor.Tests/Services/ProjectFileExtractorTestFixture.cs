@@ -42,13 +42,13 @@ namespace NetProjectPackageExtractor.Tests.Services
         {
             this.projectFileExtractor = new ProjectFileExtractor();
 
-            rootFolder = new DirectoryInfo(Path.Combine(TestContext.CurrentContext.TestDirectory, "Root"));
+            this.rootFolder = new DirectoryInfo(Path.Combine(TestContext.CurrentContext.TestDirectory, "Root"));
         }
 
         [Test]
         public void Verify_that_The_project_files_are_found()
         {
-            var files = projectFileExtractor.QueryProjectFiles(rootFolder);
+            var files = this.projectFileExtractor.QueryProjectFiles(rootFolder);
 
             Assert.That(files.Count(), Is.EqualTo(3));
         }

@@ -79,7 +79,6 @@ namespace NetProjectPackageExtractor
         /// </returns>
         private static CommandLineBuilder BuildCommandLine()
         {
-            //var root = new GenerateCommand();
             var root = new ExtractCommand();
 
             return new CommandLineBuilder(root)
