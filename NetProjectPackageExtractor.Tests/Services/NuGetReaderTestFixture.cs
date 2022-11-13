@@ -18,14 +18,12 @@
 // </copyright>
 // ------------------------------------------------------------------------------------------------
 
-namespace NetProjectPackageExtractor.Tests
+namespace NetProjectPackageExtractor.Tests.Services
 {
-    using System.IO;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
 
     using NetProjectPackageExtractor;
+    using NetProjectPackageExtractor.Services;
 
     using NUnit.Framework;
 
@@ -39,23 +37,23 @@ namespace NetProjectPackageExtractor.Tests
 
         [SetUp]
         public void SetUp()
-        { 
-            this.nuGetReader = new NuGetReader();
+        {
+            nuGetReader = new NuGetReader();
         }
 
         [Test]
         [Category("NugetCache")]
         public void Verify_that_nusepc_details_can_be_read_and_packages_are_update()
         {
-            var package = new Package 
-            { 
+            var package = new Package
+            {
                 Name = "Microsoft.NET.Test.Sdk",
                 Version = "17.4.0"
             };
 
             var packages = new List<Package>() { package };
 
-            this.nuGetReader.Update(packages);
+            nuGetReader.Update(packages);
 
             Assert.That(package.LicenseUrl, Is.EqualTo("https://aka.ms/deprecateLicenseUrl"));
         }
@@ -72,7 +70,7 @@ namespace NetProjectPackageExtractor.Tests
 
             var packages = new List<Package>() { package };
 
-            this.nuGetReader.Update(packages);
+            nuGetReader.Update(packages);
 
             Assert.That(package.LicenseUrl, Is.EqualTo("https://licenses.nuget.org/MIT"));
         }

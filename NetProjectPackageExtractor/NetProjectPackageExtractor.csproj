@@ -1,10 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup Label="Package">
-		<Title>NET Project Package extractor</Title>
+		<Title>NET Project Package Extractor</Title>
 		<Description>A command line application that extracts all nuget information from csproj files in a nested directory structure and saves the result to a spreadsheet.</Description>
-		<TargetFramework>net7.0</TargetFramework>
-		<Outp0tType>Exe</Outp0tType>
+		<TargetFramework>net6.0</TargetFramework>
+		<OutputType>Exe</OutputType>
+		<PackAsTool>true</PackAsTool>
+		<PackageId>nppe</PackageId>
+		<ToolCommandName>nppe</ToolCommandName>
+		<PackageOutputPath>./nupkg</PackageOutputPath>
+		<Version>1.0.0</Version>
 		<ImplicitUsings>disable</ImplicitUsings>
 	</PropertyGroup>
 
@@ -34,7 +39,13 @@
 	<ItemGroup>		
 		<PackageReference Include="ClosedXML" Version="0.97.0" />		
 		<PackageReference Include="NuGet.Packaging" Version="6.4.0" />
-		<PackageReference Include="CommandLineParser" Version="2.8.0" />
+		<PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+		<PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.22272.1" />
+		<PackageReference Include="Spectre.Console" Version="0.45.1-preview.0.36" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Commands\" />
 	</ItemGroup>
 
 </Project>

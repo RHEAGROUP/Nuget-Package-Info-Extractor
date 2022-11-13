@@ -20,10 +20,23 @@
 
 namespace NetProjectPackageExtractor
 {
-    using System;
-    using System.IO;
+    using System.CommandLine.Builder;
+    using System.CommandLine.Help;
+    using System.CommandLine.Hosting;
+    using System.CommandLine.Parsing;
     using System.Linq;
 
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Logging.Console;
+    using Microsoft.Extensions.Hosting;
+
+    using NetProjectPackageExtractor.Commands;
+    using NetProjectPackageExtractor.Resources;
+    using NetProjectPackageExtractor.Services;
+
+    using Spectre.Console;
+    
     /// <summary>
     /// Main entry point for the command line application
     /// </summary>
@@ -35,34 +48,54 @@ namespace NetProjectPackageExtractor
         /// <param name="args">
         /// command line arguments
         /// </param>
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
-            if (args.Length != 1)
-            {
-                Console.WriteLine("please provide the root folder where the csproj files are located and where the result will be written");
-                Console.ReadLine();
-                Environment.Exit(0);
-            }
+            var commandLineBuilder = BuildCommandLine()
+                .UseHost(_ => Host.CreateDefaultBuilder(args)
+                        .ConfigureLogging(loggingBuilder => 
+                            loggingBuilder.AddFilter<ConsoleLoggerProvider>(level => 
+                                level == LogLevel.None))
+                    , builder => builder
+                    .ConfigureServices((hostContext, services) =>
+                    {
+                        services.AddSingleton<INuGetReader, NuGetReader>();
+                        services.AddSingleton<IPackageToExcelWriter, PackageToExcelWriter>();
+                        services.AddSingleton<IProjectFileExtractor, ProjectFileExtractor>();
+                        services.AddSingleton<IProjectFileParser, ProjectFileParser>();
+                    })
+                    .UseCommandHandler<ExtractCommand, ExtractCommand.Handler>())
+                .UseDefaults()
+                
+                .Build();
 
-            var rootFolder = args[0];
+            return commandLineBuilder.Invoke(args);
+        }
 
-            var resultFile = "result.xlsx";
+        /// <summary>
+        /// builds the root command
+        /// </summary>
+        /// <returns>
+        /// The <see cref="CommandLineBuilder"/> with the root command set
+        /// </returns>
+        private static CommandLineBuilder BuildCommandLine()
+        {
+            //var root = new GenerateCommand();
+            var root = new ExtractCommand();
 
-            if (args.Length == 2)
-            {
-                resultFile = args[1];
-            }
-
-            var projectFileExtractor = new ProjectFileExtractor();
-            var csprojFiles = projectFileExtractor.QueryProjectFiles(rootFolder);
-
-            var projectFileParser = new ProjectFileParser();
-            var packages = projectFileParser.RunParser(csprojFiles).ToList();
-
-            var nuGetReader = new NuGetReader();
-            nuGetReader.Update(packages);
-
-            PackageToExcelWriter.WriteSRF(packages, Path.Combine(rootFolder, resultFile));
+            return new CommandLineBuilder(root)
+                .UseHelp(ctx =>
+                {
+                    ctx.HelpBuilder.CustomizeLayout(_ =>
+                        HelpBuilder.Default
+                            .GetLayout()
+                            .Skip(1) // Skip the default command description section.
+                            .Prepend(
+                                _ =>
+                                {
+                                    AnsiConsole.Markup($"[blue]{ResourceLoader.QueryLogo()}[/]");
+                                }
+                            ));
+                });
         }
     }
 }

@@ -18,20 +18,19 @@
 // </copyright>
 // ------------------------------------------------------------------------------------------------
 
-namespace NetProjectPackageExtractor
+namespace NetProjectPackageExtractor.Services
 {
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Xml;
 
     /// <summary>
     /// Parses the project file and extracts the referenced nuget packages
     /// </summary>
-    public class ProjectFileParser
+    public class ProjectFileParser : IProjectFileParser
     {
         /// <summary>
-        /// The run parser.
+        /// Parses the provided project files
         /// </summary>
         /// <param name="projectFiles">
         /// The project files to parse
@@ -39,7 +38,7 @@ namespace NetProjectPackageExtractor
         /// <returns>
         /// An <see cref="IEnumerable{Package}"/>
         /// </returns>
-        public IEnumerable<Package> RunParser(IEnumerable<FileInfo> projectFiles)
+        public IEnumerable<Package> Parse(IEnumerable<FileInfo> projectFiles)
         {
             var result = new List<Package>();
 
@@ -53,15 +52,19 @@ namespace NetProjectPackageExtractor
         }
 
         /// <summary>
-        /// 
+        /// Parses the provided Project file
         /// </summary>
-        /// <param name="projectFile"></param>
-        /// <returns></returns>
+        /// <param name="projectFile">
+        /// The subject project file (encapsulated by a <see cref="FileInfo"/> object).
+        /// </param>
+        /// <returns>
+        /// An <see cref="IEnumerable{Package}"/>
+        /// </returns>
         private IEnumerable<Package> ParseProjectFile(FileInfo projectFile)
         {
             var document = new XmlDocument();
-
-            var reader = File.OpenText(projectFile.FullName);
+            
+            var reader = projectFile.OpenRead();
             document.Load(reader);
 
             var projectTitle = Path.GetFileNameWithoutExtension(projectFile.Name);
@@ -72,7 +75,7 @@ namespace NetProjectPackageExtractor
             {
                 projectTitle = titleElement.InnerText;
             }
-            else 
+            else
             {
                 var assemblyName = document.SelectSingleNode("//AssemblyName");
                 if (assemblyName != null)

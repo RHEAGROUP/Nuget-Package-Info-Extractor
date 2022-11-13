@@ -18,7 +18,7 @@
 // </copyright>
 // ------------------------------------------------------------------------------------------------
 
-namespace NetProjectPackageExtractor
+namespace NetProjectPackageExtractor.Services
 {
     using System;
     using System.Collections.Generic;
@@ -28,20 +28,19 @@ namespace NetProjectPackageExtractor
     /// The purpose of the <see cref="ProjectFileExtractor"/> is to recursively iterate through a directory
     /// tree and return all the .csproj files in this directory tree as an List of <see cref="FileInfo"/> objects
     /// </summary>
-    public class ProjectFileExtractor
+    public class ProjectFileExtractor : IProjectFileExtractor
     {
         /// <summary>
         /// Queries the directory structure 
         /// </summary>
-        /// <param name="root"></param>
+        /// <param name="directoryInfo">
+        /// The <see cref="DirectoryInfo"/> from which the .csproj files are to be queried.
+        /// </param>
         /// <returns>
-        /// An <see cref="IEnumerable{FileInfo}"/> of the found .csproj files
+        /// An <see cref="IEnumerable{FileInfo}"/> of the found .csproj files.
         /// </returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public IEnumerable<FileInfo> QueryProjectFiles(string root)
+        public IEnumerable<FileInfo> QueryProjectFiles(DirectoryInfo directoryInfo)
         {
-            var directoryInfo = new DirectoryInfo(root);
-
             return directoryInfo.EnumerateFiles("*.csproj", SearchOption.AllDirectories);
         }
     }

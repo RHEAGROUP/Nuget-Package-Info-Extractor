@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// <copyright file="IResourceLoader.cs" company="RHEA System S.A.">
+// <copyright file="IProjectFileExtractor.cs" company="RHEA System S.A.">
 //
 //   Copyright 2022 RHEA System S.A.
 //
@@ -18,22 +18,27 @@
 // </copyright>
 // ------------------------------------------------------------------------------------------------
 
-namespace NetProjectPackageExtractor.Resources
+namespace NetProjectPackageExtractor.Services
 {
+    using System.Collections.Generic;
+
+    using System.IO;
+
     /// <summary>
-    /// Defnition of the interface used to load (embedded) resources
+    /// The purpose of the <see cref="IProjectFileExtractor"/> is to recursively iterate through a directory
+    /// tree and return all the .csproj files in this directory tree as an List of <see cref="FileInfo"/> objects
     /// </summary>
-    public interface IResourceLoader
+    public interface IProjectFileExtractor
     {
         /// <summary>
-        /// Load an embedded resource
+        /// Queries the directory structure 
         /// </summary>
-        /// <param name="path">
-        /// The path of the embedded resource
+        /// <param name="directoryInfo">
+        /// The <see cref="DirectoryInfo"/> from which the .csproj files are to be queried.
         /// </param>
         /// <returns>
-        /// a string containing the contents of the embedded resource
+        /// An <see cref="IEnumerable{FileInfo}"/> of the found .csproj files.
         /// </returns>
-        string LoadEmbeddedResource(string path);
+        IEnumerable<FileInfo> QueryProjectFiles(DirectoryInfo directoryInfo);
     }
 }

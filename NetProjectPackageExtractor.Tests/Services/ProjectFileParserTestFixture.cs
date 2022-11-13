@@ -18,13 +18,13 @@
 // </copyright>
 // ------------------------------------------------------------------------------------------------
 
-namespace NetProjectPackageExtractor.Tests
+namespace NetProjectPackageExtractor.Tests.Services
 {
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
 
-    using NetProjectPackageExtractor;
+    using NetProjectPackageExtractor.Services;
 
     using NUnit.Framework;
 
@@ -43,15 +43,15 @@ namespace NetProjectPackageExtractor.Tests
         {
             var projectFile = Path.Combine(TestContext.CurrentContext.TestDirectory, "Root", "root.csproj");
 
-            this.projectFiles = new List<FileInfo>() { new FileInfo(projectFile) };
-        
-            this.projectFileParser = new ProjectFileParser();
+            projectFiles = new List<FileInfo>() { new FileInfo(projectFile) };
+
+            projectFileParser = new ProjectFileParser();
         }
 
         [Test]
-        public void Verify_that_Parser_returns_pacakages()
+        public void Verify_that_Parser_returns_packages()
         {
-            var package = this.projectFileParser.RunParser(this.projectFiles).Single();
+            var package = projectFileParser.Parse(projectFiles).Single();
 
             Assert.That(package.ProjectTitle, Is.EqualTo("Root project"));
             Assert.That(package.ProjectVersion, Is.EqualTo("0.0.1"));

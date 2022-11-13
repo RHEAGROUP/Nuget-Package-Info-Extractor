@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// <copyright file="ResourcesTestFixture.cs" company="RHEA System S.A.">
+// <copyright file="ResourceLoaderTestFixture.cs" company="RHEA System S.A.">
 //
 //   Copyright 2022 RHEA System S.A.
 //
@@ -20,34 +20,19 @@
 
 namespace NetProjectPackageExtractor.Tests.Resources
 {
-    using System;
-    using System.Resources;
-
     using NetProjectPackageExtractor.Resources;
 
     using NUnit.Framework;
 
     [TestFixture]
-    public class ResourcesTestFixture
+    public class ResourceLoaderTestFixture
     {
-        [SetUp]
-        public void Setup()
-        {
-            this.path = "NetProjectPackageExtractor.Resources.ascii-art.txt";
-            this.resourceLoader = new ResourceLoader();
-        }
-
         private string path;
-        private ResourceLoader resourceLoader;
-
+        
         [Test]
         public void LoadEmbeddedResource()
         {
-            var resource = this.resourceLoader.LoadEmbeddedResource(this.path);
-            Assert.IsNotNull(resource);
-            Assert.IsNotEmpty(resource);
-            Assert.Throws<ArgumentNullException>(() => this.resourceLoader.LoadEmbeddedResource(null));
-            Assert.Throws<MissingManifestResourceException>(() => this.resourceLoader.LoadEmbeddedResource("thispathdoesnotexist"));
+            Assert.That(ResourceLoader.QueryLogo(), Is.Not.Empty);
         }
     }
 }

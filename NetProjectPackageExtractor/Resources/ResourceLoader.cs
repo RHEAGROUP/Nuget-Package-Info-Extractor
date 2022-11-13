@@ -27,7 +27,7 @@ namespace NetProjectPackageExtractor.Resources
     /// <summary>
     /// Class responsible for loading embedded resources.
     /// </summary>
-    public class ResourceLoader : IResourceLoader
+    public static class ResourceLoader
     {
         /// <summary>
         /// Load an embedded resource
@@ -38,7 +38,7 @@ namespace NetProjectPackageExtractor.Resources
         /// <returns>
         /// a string containing the contents of the embedded resource
         /// </returns>
-        public string LoadEmbeddedResource(string path)
+        public static string LoadEmbeddedResource(string path)
         {
             var assembly = Assembly.GetExecutingAssembly();
 
@@ -47,6 +47,34 @@ namespace NetProjectPackageExtractor.Resources
             using var reader = new StreamReader(stream ?? throw new MissingManifestResourceException());
 
             return reader.ReadToEnd();
+        }
+
+        /// <summary>
+        /// queries the version number from the executing assembly
+        /// </summary>
+        /// <returns>
+        /// a string representation of the version of the application
+        /// </returns>
+        public static string QueryVersion()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            return assembly.GetName().Version?.ToString();
+        }
+
+        /// <summary>
+        /// Queries the logo with version info from the embedded resources
+        /// </summary>
+        /// <returns>
+        /// the logo
+        /// </returns>
+        public static string QueryLogo()
+        {
+            var version = QueryVersion();
+
+            var logo = LoadEmbeddedResource("NetProjectPackageExtractor.Resources.ascii-art.txt")
+                .Replace("NetProjectExtractorVersion", version);
+
+            return logo;
         }
     }
 }

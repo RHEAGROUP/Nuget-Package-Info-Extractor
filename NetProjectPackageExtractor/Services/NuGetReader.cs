@@ -18,7 +18,7 @@
 // </copyright>
 // ------------------------------------------------------------------------------------------------
 
-namespace NetProjectPackageExtractor
+namespace NetProjectPackageExtractor.Services
 {
     using System;
     using System.Collections.Generic;
@@ -26,14 +26,19 @@ namespace NetProjectPackageExtractor
     using System.Xml.Linq;
 
     using NuGet.Packaging;
+    using Spectre.Console;
 
-    public class NuGetReader
+    /// <summary>
+    /// The purpose of the <see cref="NuGetReader"/> is to update <see cref="Package"/>s with
+    /// information from the local nuget cache
+    /// </summary>
+    public class NuGetReader : INuGetReader
     {
         /// <summary>
         /// Update the <see cref="Package"/> objects with information from the local nuget cache
         /// </summary>
         /// <param name="packages">
-        /// The <see cref="Packages"/> for which the information needs to be retrieved from the local nuget cache
+        /// The <see cref="Package"/>s for which the information needs to be retrieved from the local nuget cache
         /// </param>
         /// <returns>
         /// The <see cref="List{Package}"/>
@@ -56,7 +61,7 @@ namespace NetProjectPackageExtractor
                 }
                 else
                 {
-                    Console.WriteLine($"One of the referenced package files ({package.Name}) doesn't exist, please consider running a dotnet restore command");
+                    AnsiConsole.WriteLine($"LOG: One of the referenced package files ({package.Name}) doesn't exist, please consider running a dotnet restore command");
                 }
             }
         }

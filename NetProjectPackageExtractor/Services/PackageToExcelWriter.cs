@@ -18,17 +18,19 @@
 // </copyright>
 // ------------------------------------------------------------------------------------------------
 
-namespace NetProjectPackageExtractor
+namespace NetProjectPackageExtractor.Services
 {
-    using ClosedXML.Excel;
     using System.Collections.Generic;
     using System.Data;
+    using System.IO;
     using System.Linq;
 
+    using ClosedXML.Excel;
+    
     /// <summary>
     /// Parses the project file and extracts the referenced nuget packages
     /// </summary>
-    public class PackageToExcelWriter
+    public class PackageToExcelWriter : IPackageToExcelWriter
     {
         /// <summary>
         /// Writes specific SRF data to an Excel file
@@ -36,23 +38,19 @@ namespace NetProjectPackageExtractor
         /// <param name="packages">
         /// The project files to parse
         /// </param>
-        /// <param name="fileLocation">
-        /// The location where the file should be written to (folder + filename)
+        /// <param name="result">
+        /// The location where the file should be written to
         /// </param>
-        /// <returns>
-        /// <see cref="true"/> if succeeded, otherwise false
-        /// </returns>
-        public static void WriteSRF(IEnumerable<Package> packages, string fileLocation)
+        public void WriteSoftwareReuseFile(IEnumerable<Package> packages, FileInfo result)
         {
             using (var workbook = new XLWorkbook())
             {
-                AddLibrariesSheet(packages, workbook);
+                this.AddLibrariesSheet(packages, workbook);
 
-                AddNugetSheet(packages, workbook);
+                this.AddNugetSheet(packages, workbook);
 
-                workbook.SaveAs(fileLocation);
+                workbook.SaveAs(result.FullName);
             }
-
         }
 
         /// <summary>
@@ -60,25 +58,24 @@ namespace NetProjectPackageExtractor
         /// </summary>
         /// <param name="packages">The <see cref="Package"/>s to get data from</param>
         /// <param name="workbook">The <see cref="XLWorkbook"/></param>
-        private static void AddLibrariesSheet(IEnumerable<Package> packages, XLWorkbook workbook)
+        private void AddLibrariesSheet(IEnumerable<Package> packages, XLWorkbook workbook)
         {
             var nugetPackageData =
                 packages
                 .Select(x => new
                 {
                     Id = x.Name,
-                    Version = x.Version,
-                    License = x.License,
-                    LicenseUrl = x.LicenseUrl,
+                    x.Version,
+                    x.License,
+                    x.LicenseUrl,
                     ProjectName = x.ProjectTitle,
-                    ProjectUrl = x.ProjectUrl
+                    x.ProjectUrl
                 }
                 )
                 .OrderBy(x => x.Id)
                 .ThenBy(x => x.Version)
                 .ThenBy(x => x.ProjectName);
-
-
+            
             var pivotWorksheet = workbook.Worksheets.Add("SRF Annex A - Libraries");
             var dataTable = new DataTable();
             dataTable.Columns.Add("library", typeof(string));
@@ -119,18 +116,18 @@ namespace NetProjectPackageExtractor
         /// </summary>
         /// <param name="packages">The <see cref="Package"/>s to get data from</param>
         /// <param name="workbook">The <see cref="XLWorkbook"/></param>
-        private static void AddNugetSheet(IEnumerable<Package> packages, XLWorkbook workbook)
+        private void AddNugetSheet(IEnumerable<Package> packages, XLWorkbook workbook)
         {
             var nugetPackageData =
                 packages
                 .Select(x => new
                 {
                     Id = x.Name,
-                    Version = x.Version,
-                    License = x.License,
-                    LicenseUrl = x.LicenseUrl,
+                    x.Version,
+                    x.License,
+                    x.LicenseUrl,
                     ProjectName = x.ProjectTitle,
-                    ProjectUrl = x.ProjectUrl
+                    x.ProjectUrl
                 }
                 )
                 .OrderBy(x => x.Id)
@@ -150,7 +147,7 @@ namespace NetProjectPackageExtractor
                 }
 
                 if (!string.IsNullOrWhiteSpace(wsrow.Cell("F").Value.ToString()))
-                { 
+                {
                     wsrow.Cell("F").SetHyperlink(new XLHyperlink(wsrow.Cell("F").Value.ToString()));
                 }
             }

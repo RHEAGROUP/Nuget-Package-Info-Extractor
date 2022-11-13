@@ -18,13 +18,13 @@
 // </copyright>
 // ------------------------------------------------------------------------------------------------
 
-namespace NetProjectPackageExtractor.Tests
+namespace NetProjectPackageExtractor.Tests.Services
 {
     using System.IO;
     using System.Linq;
 
-    using NetProjectPackageExtractor;
-
+    using NetProjectPackageExtractor.Services;
+    
     using NUnit.Framework;
 
     /// <summary>
@@ -35,20 +35,20 @@ namespace NetProjectPackageExtractor.Tests
     {
         private ProjectFileExtractor projectFileExtractor;
 
-        private string rootFolder;
+        private DirectoryInfo rootFolder;
 
         [SetUp]
         public void Setup()
         {
             this.projectFileExtractor = new ProjectFileExtractor();
 
-            this.rootFolder = Path.Combine(TestContext.CurrentContext.TestDirectory, "Root");
+            rootFolder = new DirectoryInfo(Path.Combine(TestContext.CurrentContext.TestDirectory, "Root"));
         }
 
         [Test]
         public void Verify_that_The_project_files_are_found()
         {
-            var files = this.projectFileExtractor.QueryProjectFiles(this.rootFolder);
+            var files = projectFileExtractor.QueryProjectFiles(rootFolder);
 
             Assert.That(files.Count(), Is.EqualTo(3));
         }
