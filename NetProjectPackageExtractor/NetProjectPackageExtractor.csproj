@@ -1,17 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-	<OutputType>Exe</OutputType>
-	<ImplicitUsings>disable</ImplicitUsings>
-	<Company>RHEA System S.A.</Company>
-	<Authors>Sam Gerene, Alexander van Delft</Authors>
-	<Description>A command line application that extracts all nuget information from csproj files in a nested directory structure and saves the result to a spreadsheet.</Description>
-	<Copyright>Copyright 2022 RHEA System S.A.</Copyright>
-	<PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-	<RepositoryUrl>https://github.com/RHEAGROUP/Net-Project-Package-Extractor.git</RepositoryUrl>
-	<RepositoryType>Git</RepositoryType>
-  </PropertyGroup>
+	<PropertyGroup Label="Package">
+		<Title>NET Project Package extractor</Title>
+		<Description>A command line application that extracts all nuget information from csproj files in a nested directory structure and saves the result to a spreadsheet.</Description>
+		<TargetFramework>net7.0</TargetFramework>
+		<Outp0tType>Exe</Outp0tType>
+		<ImplicitUsings>disable</ImplicitUsings>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Copyright">
+		<Company>RHEA System S.A.</Company>
+		<Copyright>Copyright 2022 RHEA System S.A.</Copyright>
+		<Authors>Sam Gerené, Alexander van Delft</Authors>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<RequireLicenseAcceptance>true</RequireLicenseAcceptance>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Repository">
+		<RepositoryUrl>https://github.com/RHEAGROUP/Net-Project-Package-Extractor.git</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+	</PropertyGroup>
 
   <ItemGroup>
     <None Remove="Resources\ascii-art.txt" />
@@ -24,10 +32,9 @@
   </ItemGroup>
 
 	<ItemGroup>		
-		<PackageReference Include="ClosedXML" Version="0.95.4" />		
-		<PackageReference Include="NuGet.Packaging" Version="6.1.0" />
+		<PackageReference Include="ClosedXML" Version="0.97.0" />		
+		<PackageReference Include="NuGet.Packaging" Version="6.4.0" />
 		<PackageReference Include="CommandLineParser" Version="2.8.0" />
-		<PackageReference Include="Autofac" Version="6.3.0" />
 	</ItemGroup>
 
 </Project>

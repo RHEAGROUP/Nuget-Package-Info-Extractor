@@ -50,7 +50,7 @@ namespace NetProjectPackageExtractor.Tests
             var package = new Package 
             { 
                 Name = "Microsoft.NET.Test.Sdk",
-                Version = "16.11.0"
+                Version = "17.4.0"
             };
 
             var packages = new List<Package>() { package };

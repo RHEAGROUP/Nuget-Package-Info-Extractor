@@ -146,12 +146,12 @@ namespace NetProjectPackageExtractor
             {
                 if (!string.IsNullOrWhiteSpace(wsrow.Cell("D").Value.ToString()))
                 {
-                    wsrow.Cell("D").Hyperlink = new XLHyperlink(wsrow.Cell("D").Value.ToString());
+                    wsrow.Cell("D").SetHyperlink(new XLHyperlink(wsrow.Cell("D").Value.ToString()));
                 }
 
                 if (!string.IsNullOrWhiteSpace(wsrow.Cell("F").Value.ToString()))
                 { 
-                    wsrow.Cell("F").Hyperlink = new XLHyperlink(wsrow.Cell("F").Value.ToString());
+                    wsrow.Cell("F").SetHyperlink(new XLHyperlink(wsrow.Cell("F").Value.ToString()));
                 }
             }
         }
