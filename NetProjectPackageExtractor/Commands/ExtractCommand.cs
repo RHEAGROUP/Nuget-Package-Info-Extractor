@@ -223,7 +223,7 @@ namespace NetProjectPackageExtractor.Commands
                     AnsiConsole.MarkupLine("[red]An exception occurred[/]");
                     AnsiConsole.MarkupLine("[green]Dropping to impulse speed[/]");
                     AnsiConsole.MarkupLine("[red]please report an issue at[/]");
-                    AnsiConsole.MarkupLine("[link] https://github.com/RHEAGROUP/VCD-Generator/issues [/]");
+                    AnsiConsole.MarkupLine("[link] https://github.com/RHEAGROUP/Net-Project-Package-Extractor/issues [/]");
                     AnsiConsole.WriteLine();
                     AnsiConsole.WriteException(ex);
                     
