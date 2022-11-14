@@ -20,6 +20,7 @@
 
 namespace NetProjectPackageExtractor.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Data;
     using System.IO;
@@ -43,6 +44,16 @@ namespace NetProjectPackageExtractor.Services
         /// </param>
         public void WriteSoftwareReuseFile(IEnumerable<Package> packages, FileInfo result)
         {
+            if (packages == null)
+            {
+                throw new ArgumentNullException(nameof(packages));
+            }
+
+            if (result == null)
+            {
+                throw new ArgumentNullException(nameof(result));
+            }
+            
             using (var workbook = new XLWorkbook())
             {
                 AddLibrariesSheet(packages, workbook);
