@@ -115,11 +115,17 @@ namespace NetProjectPackageExtractor.Services
                 dataTable.Rows.Add(dataRow);
             }
 
-            var table = pivotWorksheet.Cell(1, 1).InsertTable(dataTable, "Libraries", true);
-            pivotWorksheet.Rows().AdjustToContents();
-            pivotWorksheet.Columns().AdjustToContents();
+            pivotWorksheet.Cell(1, 1).InsertTable(dataTable, "Libraries", true);
 
-
+            try
+            {
+                pivotWorksheet.Rows().AdjustToContents();
+                pivotWorksheet.Columns().AdjustToContents();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Problem loading fonts {0}", e);
+            }
         }
 
         /// <summary>
@@ -146,9 +152,17 @@ namespace NetProjectPackageExtractor.Services
                 .ThenBy(x => x.ProjectName);
 
             var nugetWorksheet = workbook.Worksheets.Add("NuGet Packages");
-            var table = nugetWorksheet.Cell(1, 1).InsertTable(nugetPackageData.AsEnumerable(), "NugetPackages", true);
-            nugetWorksheet.Rows().AdjustToContents();
-            nugetWorksheet.Columns().AdjustToContents();
+            nugetWorksheet.Cell(1, 1).InsertTable(nugetPackageData.AsEnumerable(), "NugetPackages", true);
+
+            try
+            {
+                nugetWorksheet.Rows().AdjustToContents();
+                nugetWorksheet.Columns().AdjustToContents();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Problem loading fonts {0}", e);
+            }
 
             foreach (var wsrow in nugetWorksheet.Rows().Skip(1))
             {
