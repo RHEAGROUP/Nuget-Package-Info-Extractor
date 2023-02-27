@@ -89,20 +89,19 @@ namespace NetProjectPackageExtractor.Services
             {
                 projectVersion = versionElement.InnerText;
             }
-
-
+            
             var packageReferenceElements = document.GetElementsByTagName("PackageReference");
 
             foreach (var element in packageReferenceElements)
             {
                 var xmlElement = (XmlNode)element;
-
-                var package = new Package
+                
+				var package = new Package
                 {
                     ProjectTitle = projectTitle,
                     ProjectVersion = projectVersion,
-                    Name = xmlElement.Attributes["Include"].Value,
-                    Version = xmlElement.Attributes["Version"].Value,
+                    Name = xmlElement.Attributes["Include"]?.Value,
+                    Version = xmlElement.Attributes["Version"]?.Value,
                 };
 
                 yield return package;
