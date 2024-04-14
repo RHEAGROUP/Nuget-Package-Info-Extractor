@@ -3,19 +3,20 @@
 	<PropertyGroup Label="Package">
 		<Title>NET Project Package Extractor</Title>
 		<Description>A command line application that extracts all nuget information from csproj files in a nested directory structure and saves the result to a spreadsheet.</Description>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<OutputType>Exe</OutputType>
 		<PackAsTool>true</PackAsTool>
 		<PackageId>nppe</PackageId>
 		<ToolCommandName>nppe</ToolCommandName>
 		<PackageOutputPath>./nupkg</PackageOutputPath>
-		<Version>1.0.1</Version>
+		<Version>2.0.0</Version>
 		<ImplicitUsings>disable</ImplicitUsings>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<PropertyGroup Label="Copyright">
 		<Company>RHEA System S.A.</Company>
-		<Copyright>Copyright 2022 RHEA System S.A.</Copyright>
+		<Copyright>Copyright 2022-2024 RHEA System S.A.</Copyright>
 		<Authors>Sam Gerené, Alexander van Delft</Authors>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 		<RequireLicenseAcceptance>true</RequireLicenseAcceptance>
@@ -37,15 +38,19 @@
   </ItemGroup>
 
 	<ItemGroup>		
-		<PackageReference Include="ClosedXML" Version="0.97.0" />		
-		<PackageReference Include="NuGet.Packaging" Version="6.4.0" />
+		<PackageReference Include="ClosedXML" Version="0.102.2" />		
+		<PackageReference Include="NuGet.Packaging" Version="6.9.1" />
 		<PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
 		<PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.22272.1" />
-		<PackageReference Include="Spectre.Console" Version="0.45.1-preview.0.36" />
+		<PackageReference Include="Spectre.Console" Version="0.48.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Commands\" />
 	</ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
 
 </Project>
