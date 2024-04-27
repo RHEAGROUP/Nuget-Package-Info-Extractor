@@ -14,8 +14,8 @@
     ███████╗██╔╝ ██╗   ██║   ██║  ██║██║  ██║╚██████╗   ██║   ╚██████╔╝██║  ██║
     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   
 
-         copyright 2022-2024 RHEA Group S.A. https://www.rheagroup.com
-         email: info@rheagroup.com
+         copyright 2022-2024 Starion Group S.A. https://www.stariongroup.eu
+         email: info@stariongroup.eu
 
          NET PROJECT EXTRACTOR version: NetProjectExtractorVersion
 

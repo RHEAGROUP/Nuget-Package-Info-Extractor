@@ -1,7 +1,7 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// <copyright file="ExtractCommand.cs" company="RHEA System S.A.">
+// <copyright file="ExtractCommand.cs" company="Starion Group S.A.">
 // 
-//   Copyright 2022-2024 RHEA System S.A.
+//   Copyright 2022-2024 Starion Group S.A.
 // 
 //   Licensed under the Apache License, Version 2.0 (the "License");
 //   you may not use this file except in compliance with the License.
@@ -223,7 +223,7 @@ namespace NetProjectPackageExtractor.Commands
                     AnsiConsole.MarkupLine("[red]An exception occurred[/]");
                     AnsiConsole.MarkupLine("[green]Dropping to impulse speed[/]");
                     AnsiConsole.MarkupLine("[red]please report an issue at[/]");
-                    AnsiConsole.MarkupLine("[link] https://github.com/RHEAGROUP/Net-Project-Package-Extractor/issues [/]");
+                    AnsiConsole.MarkupLine("[link] https://github.com/STARIONGROUP/Net-Project-Package-Extractor/issues [/]");
                     AnsiConsole.WriteLine();
                     AnsiConsole.WriteException(ex);
                     

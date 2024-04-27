@@ -1,8 +1,8 @@
 ### Prerequisites
 
 - [ ] I have written a descriptive pull-request title
-- [ ] I have verified that there are no overlapping [pull-requests](https://github.com/RHEAGROUP/Net-Project-Package-Extractor/pulls) open
-- [ ] I have verified that I am following the ReqIFSharp [code style guidelines](https://raw.githubusercontent.com/RHEAGROUP/Net-Project-Package-Extractor/master/.github/CONTRIBUTING.md)
+- [ ] I have verified that there are no overlapping [pull-requests](https://github.com/STARIONGROUP/Net-Project-Package-Extractor/pulls) open
+- [ ] I have verified that I am following the ReqIFSharp [code style guidelines](https://raw.githubusercontent.com/STARIONGROUP/Net-Project-Package-Extractor/master/.github/CONTRIBUTING.md)
 - [ ] I have provided test coverage for my change (where applicable)
 
 ### Description

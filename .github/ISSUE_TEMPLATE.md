@@ -2,7 +2,7 @@
 
 - [ ] I have written a descriptive issue title
 - [ ] I have verified that I am running the latest version of the Net-Project-Package-Extractor
-- [ ] I have searched [open](https://github.com/RHEAGROUP/Net-Project-Package-Extractor/issues) and [closed](https://github.com/RHEAGROUP/Net-Project-Package-Extractor/issues?q=is%3Aissue+is%3Aclosed) issues to ensure it has not already been reported
+- [ ] I have searched [open](https://github.com/STARIONGROUP/Net-Project-Package-Extractor/issues) and [closed](https://github.com/STARIONGROUP/Net-Project-Package-Extractor/issues?q=is%3Aissue+is%3Aclosed) issues to ensure it has not already been reported
 
 ### Description
 <!-- A description of the bug or feature -->

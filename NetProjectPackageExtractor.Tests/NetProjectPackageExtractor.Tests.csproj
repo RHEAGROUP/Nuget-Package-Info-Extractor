@@ -4,9 +4,9 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
-	<Company>RHEA System S.A.</Company>
+	<Company>Starion Group S.A.</Company>
 	<Authors>Sam Gerené, Alexander van Delft</Authors>
-	<Copyright>Copyright 2022-2024 RHEA System S.A.</Copyright>
+	<Copyright>Copyright 2022-2024 Starion Group S.A.</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
